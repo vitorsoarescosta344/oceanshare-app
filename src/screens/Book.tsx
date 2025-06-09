@@ -376,30 +376,52 @@ export default function Book({route, navigation}: any) {
     return <Loading />;
   }
 
+  console.log({quota});
+
+  console.log({condicao: quota?.Photos.lenght > 0});
+
   return (
     <SafeAreaView style={{backgroundColor: '#fff', flex: 1}}>
       <ScrollView ref={scrollViewRef}>
         <View style={{flex: 1}}>
-          <FlatList
-            horizontal
-            data={quota?.Photos}
-            renderItem={({item}) => (
-              <ImageBackground
-                style={{
-                  width: width,
-                  height: 190,
-                  borderBottomLeftRadius: 10,
-                  borderBottomRightRadius: 10,
-                }}
-                source={{uri: item.Photo}}>
-                <TouchableOpacity
-                  style={styles.back}
-                  onPress={() => navigation.goBack()}>
-                  <Icon name="chevron-left" size={30} color={'#ceae7b'} />
-                </TouchableOpacity>
-              </ImageBackground>
-            )}
-          />
+          {quota?.Photos.lenght > 0 ? (
+            <FlatList
+              horizontal
+              data={quota?.Photos}
+              renderItem={({item}) => (
+                <ImageBackground
+                  style={{
+                    width: width,
+                    height: 190,
+                    borderBottomLeftRadius: 10,
+                    borderBottomRightRadius: 10,
+                  }}
+                  source={{uri: item.Photo}}>
+                  <TouchableOpacity
+                    style={styles.back}
+                    onPress={() => navigation.goBack()}>
+                    <Icon name="chevron-left" size={30} color={'#ceae7b'} />
+                  </TouchableOpacity>
+                </ImageBackground>
+              )}
+            />
+          ) : (
+            <ImageBackground
+              style={{
+                width: '100%',
+                height: 190,
+                borderBottomLeftRadius: 10,
+                borderBottomRightRadius: 10,
+              }}
+              source={require('../assets/no-photo.png')}>
+              <TouchableOpacity
+                style={styles.back}
+                onPress={() => navigation.goBack()}>
+                <Icon name="chevron-left" size={30} color={'#ceae7b'} />
+              </TouchableOpacity>
+            </ImageBackground>
+          )}
+
           <View
             style={{
               flexDirection: 'row',
