@@ -3,7 +3,7 @@ import {Alert} from 'react-native';
 const IS_DEV: boolean = false;
 const IS_HOM: boolean = false;
 
-export const server = 'http://localhost:5000';
+export const server = 'https://api-ocean.penguimbyte.online';
 
 export function isDev(): boolean {
   return server.indexOf('homologacao') != -1 && IS_DEV;
