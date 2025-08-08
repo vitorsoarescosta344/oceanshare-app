@@ -61,7 +61,7 @@ export default function MaintenanceList({route, navigation}: any) {
             item={{
               ...item,
               QuotaName: route.params.QuotaName,
-              Holders: route.params.Holders,
+              Holders: item.Holders,
             }}
           />
         ))}
