@@ -332,7 +332,10 @@ export default function Book({route, navigation}: any) {
       return;
     }
 
-    setStartDate(moment(formattedDate).format('YYYY-MM-DD'));
+    const date = moment(formattedDate).format('YYYY-MM-DD');
+
+    setStartDate(date);
+    setEndDate(date);
 
     markedDatesCopy[moment(day.dateString).format('YYYY-MM-DD')] = {
       customStyles: {
