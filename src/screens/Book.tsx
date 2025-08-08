@@ -257,18 +257,25 @@ export default function Book({route, navigation}: any) {
   }
 
   async function validate() {
-    setIdsValid(holderId > 0);
-    //setDatesValid(startDate != null && endDate != null);
-    setDatesValid(startDate !== null && startDate != '');
+    const idsIsValid = holderId > 0;
+    const datesIsValid = startDate !== null && startDate != '';
 
-    if (datesValid && idsValid) {
+    setIdsValid(idsIsValid);
+    setDatesValid(datesIsValid);
+
+    if (datesIsValid && idsIsValid) {
       await save();
-    } else if (!datesValid) {
+    } else if (!datesIsValid) {
       showError('Selecione ao menos uma data!');
     }
   }
 
   async function save() {
+    if (!startDate) {
+      showError('Selecione pelo menos uma data');
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -278,7 +285,7 @@ export default function Book({route, navigation}: any) {
           QuotaId: QuotaId,
           holderId,
           StartDate: moment(startDate).format('YYYY-MM-DD'),
-          EndDate: moment(startDate).format('YYYY-MM-DD'),
+          EndDate: moment(endDate ?? startDate).format('YYYY-MM-DD'),
         });
       } else {
         await axios.post(`${server}/Book`, {
@@ -287,7 +294,7 @@ export default function Book({route, navigation}: any) {
           ManagerId: user?.Holder.ManagerId,
           holderId,
           StartDate: moment(startDate).format('YYYY-MM-DD'),
-          EndDate: moment(startDate).format('YYYY-MM-DD'),
+          EndDate: moment(endDate ?? startDate).format('YYYY-MM-DD'),
         });
       }
 
