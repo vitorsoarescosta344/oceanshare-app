@@ -89,12 +89,10 @@ android {
             keyPassword 'android'
         }
         release {
-            if (project.hasProperty('UPLOAD_STORE_FILE')) {
-                storeFile file(UPLOAD_STORE_FILE)
-                storePassword UPLOAD_STORE_PASSWORD
-                keyAlias UPLOAD_KEY_ALIAS
-                keyPassword UPLOAD_KEY_PASSWORD
-            }
+            storeFile file('oceanshare.keystore')
+            storePassword 'm4ur0j0n3s'
+            keyAlias 'oceanshare'
+            keyPassword 'm4ur0j0n3s'
         }
     }
     buildTypes {
