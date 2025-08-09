@@ -386,15 +386,11 @@ export default function Book({route, navigation}: any) {
     return <Loading />;
   }
 
-  console.log({quota});
-
-  console.log({condicao: quota?.Photos.lenght > 0});
-
   return (
     <SafeAreaView style={{backgroundColor: '#fff', flex: 1}}>
       <ScrollView ref={scrollViewRef}>
         <View style={{flex: 1}}>
-          {quota?.Photos.lenght > 0 ? (
+          {quota?.Photos.length > 0 ? (
             <FlatList
               horizontal
               data={quota?.Photos}
