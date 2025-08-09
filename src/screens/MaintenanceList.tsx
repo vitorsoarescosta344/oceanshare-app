@@ -46,7 +46,7 @@ export default function MaintenanceList({route, navigation}: any) {
         </Text>
       </View>
 
-      <ScrollView contentContainerStyle={{padding: 10}}>
+      <ScrollView contentContainerStyle={{padding: 10, gap: 10}}>
         <Text
           style={{
             fontSize: 20,
